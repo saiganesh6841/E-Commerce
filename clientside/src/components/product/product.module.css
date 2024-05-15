@@ -1,0 +1,48 @@
+
+/* .productsContainer {
+    padding: 20px;
+    background-color: lightgray;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content:space-around;
+    gap: 20px; 
+  } */
+  .productsContainer {
+    padding: 20px;
+    background-color: #A9A9A9;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the min and max width as needed */
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  /* Media Query for responsiveness */
+  @media screen and (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the min and max width for smaller screens */
+    }
+  }
+  
+  /* Ensure maximum of 4 items per row */
+  @media screen and (min-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Adjust the min and max width for larger screens */
+    }
+  }
+  
+  
+  .card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  
+  /* You can add additional styling for the items if needed */
+  
