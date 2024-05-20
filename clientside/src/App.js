@@ -3,6 +3,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navigation from './navigationStack/navigation';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const baseURL="https://e-commerce-backend-xmh5.onrender.com"
 
@@ -11,7 +13,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
    <Navigation/>
-   
+   <ToastContainer/>
     </div>
 
     </BrowserRouter>

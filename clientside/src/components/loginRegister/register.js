@@ -21,41 +21,44 @@ const AuthForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
   
-    try {
-      if (isLogin) {
+    if (isLogin) {
+      try {
         // Call login API with email and password
         const response = await axios.post(`${baseURL}/login`, {
           email,
-          password
+          password,
         });
-        localStorage.setItem("TOKEN",response.data.token)
-        console.log(response.data.token)
-        alert(response.data.message)
-        toast("loginsuccess")
-        handleLogin()
-        navigate("/")
-
-        // console.log('Login:', response.data.token);
-      } else {
+        localStorage.setItem('TOKEN', response.data.token);
+        console.log(response.data.token);
+        toast.success(response.data.message);
+        handleLogin();
+        navigate('/');
+      } catch (error) {
+        // Handle login error
+        console.log('Login Error:', error.response.data);
+        toast.error(error.response?.data?.message);
+      }
+    } else {
+      try {
         // Call register API with email, password, and username
         const response = await axios.post(`${baseURL}/register`, {
           email,
           password,
-          username
+          username,
         });
-        alert(response.data.message)
+        toast.success(response.data.message);
         console.log('Signup:', response.data);
+      } catch (error) {
+        // Handle registration error
+        console.log('Registration Error:', error.response.data);
+        toast.error(error.response.data.error);
       }
-  
-      // Reset input fields
-      setEmail('');
-      setPassword('');
-      setUsername('');
-    } catch (error) {
-      // Handle error
-      console.log('Error:', error.response.data);
-      alert(error.response.data.message)
     }
+
+    // // Reset input fields
+    // setEmail('');
+    // setPassword('');
+    // setUsername('');
   };
 
   const handleToggle = () => {
@@ -96,7 +99,7 @@ const AuthForm = () => {
         </form>
       </div>
     </div>
-    <ToastContainer/>
+    {/* <ToastContainer/> */}
   </div>
   );
 };

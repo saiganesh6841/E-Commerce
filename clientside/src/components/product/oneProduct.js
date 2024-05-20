@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { displayRazorpay } from '../payment';
 import { baseURL } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -57,7 +59,7 @@ function ProductDetailsPage() {
         const token = localStorage.getItem('TOKEN');
         console.log(token)
         if (!token) {
-          alert('User must be logged in to add items to cart.');
+          toast.dark('User must be logged in to add items to cart.');
           return;
         }
   
@@ -69,7 +71,7 @@ function ProductDetailsPage() {
   
         // Handle success response
         console.log('Product added to cart:', response.data);
-        alert(response.data.message)
+        toast.success(response.data.message)
       } catch (error) {
         // Handle error
         console.error('Error adding product to cart:', error.response);
@@ -123,6 +125,7 @@ function ProductDetailsPage() {
     </div>
    
   </Card>
+  <ToastContainer/>
 </div>
 
   );

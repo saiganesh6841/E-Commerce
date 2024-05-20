@@ -16,7 +16,7 @@ const Navigation=()=>{
 
   const [login, setLogin] = useState(() => {
     // Initialize login state from localStorage or default to false
-    return localStorage.getItem('login') === 'true';
+    return localStorage.getItem('login') === 'false';
   });
 
   const handleSearch = (query) => {

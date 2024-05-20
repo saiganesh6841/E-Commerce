@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import { displayRazorpay } from '../payment';
 import { useDispatch } from 'react-redux';
 import { baseURL } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const cartCount=createContext()
 function CartDetails() {
@@ -19,7 +21,7 @@ function CartDetails() {
                 
 
                 if (!token) {
-                    alert('User must be logged in to view cart details.');
+                    toast.dark('User must be logged in to view cart details.');
                     return;
                 }
                 const response = await axios.post(
@@ -60,7 +62,7 @@ console.log(cartDetails);
             const token = localStorage.getItem('TOKEN');
 
             if (!token) {
-                alert('User must be logged in to remove items from the cart.');
+                toast.dark('User must be logged in to remove items from the cart.');
                 return;
             }
 
@@ -71,7 +73,7 @@ console.log(cartDetails);
             );
 
             console.log('Item removed from cart:', response.data);
-            alert(response.data.message)
+            toast.success(response.data.message)
             setCartDetails(prevCartDetails => prevCartDetails.filter(item => item._id !== productId));
 
         } catch (error) {
@@ -142,6 +144,7 @@ console.log(cartDetails);
 </div>
 
         </cartCount.Provider>
+        {/* <ToastContainer/> */}
         </>
     );
 }
